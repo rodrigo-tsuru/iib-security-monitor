@@ -215,7 +215,12 @@ public class CertificateExpirationMonitor_JCN extends MbJavaComputeNode {
 		
 		KeyStore ks;
 		try (FileInputStream fis = new java.io.FileInputStream(ksFile)){
-			ks = KeyStore.getInstance(ksType);
+			
+			if(ksType==null || ksType.isEmpty()) {
+				ks = KeyStore.getInstance(KeyStore.getDefaultType());
+			} else {
+				ks = KeyStore.getInstance(ksType);
+			}
 			char[] password = null;
 			
 			if(ksPass.contains("::")) {
@@ -273,6 +278,10 @@ public class CertificateExpirationMonitor_JCN extends MbJavaComputeNode {
 			//e.printStackTrace();
 			LOGGER.severe(e.getMessage());
 			list.add(new SecurityError("Error while reading keystore",ksFile));
+		} catch (Exception e) {
+			//e.printStackTrace();
+			LOGGER.severe(e.getMessage());
+			list.add(new SecurityError("Error while validating keystore",ksFile));
 		} 
 
 		
