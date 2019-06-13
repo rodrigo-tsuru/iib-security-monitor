@@ -2,8 +2,10 @@ IBM Integration Bus Certification Expiration Monitor inspired on WAS (WebSphere 
 
 # Setup
 
-#!/bin/bash
-#https://www.ibm.com/support/knowledgecenter/pt-br/SSMKHH_10.0.0/com.ibm.etools.mft.doc/ac56640_.htm
+1. Create your test environment
+1. Create a keystore with test certificates (you can use the JKS file provided in setup directory)
+1. Configure your Integration Node or Integration Server:
+
 BROKER=TESTNODE_tsuru
 EG=default
 CLONED_DIR=/GIT/iib-security-monitor
